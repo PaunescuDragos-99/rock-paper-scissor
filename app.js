@@ -3,49 +3,104 @@ function getComputerChoice () {
     return value[(Math.floor(Math.random()*3))];
 }
 
-function getPlayerChoice(){
-    playerValue = prompt("Choose what you want: ");
-    return playerValue;
+const rock = document.querySelector('.rock');
+const paper = document.querySelector('.paper');
+const scissor = document.querySelector('.scissor');
+const computerScore = document.querySelector('.computerScore');
+const playerScore = document.querySelector('.playerScore');
+const tieScore = document.querySelector('.tie');
+const playAgain = document.querySelector('.playAgain');
+
+const results = document.querySelector(".results");
+const winner = document.createElement('p');
+results.appendChild(winner);
+
+let computer = 0;
+let player = 0;
+let tie = 0;
+
+function disableBtns(){
+    rock.disabled = true;
+    paper.disabled = true;
+    scissor.disabled = true;
 }
 
-function playGame(){
-    playerSelection = getPlayerChoice().toUpperCase();
+playAgain.addEventListener('click',() =>{
+    rock.disabled = false;
+    paper.disabled = false;
+    scissor.disabled = false;
+    computer = 0;
+    player = 0;
+    tie = 0;
+    playerScore.innerText = `Player: ${player}`;
+    computerScore.innerText = `Computer: ${computer}`;
+    tieScore.innerText = `Tie: ${tie}`;
+    winner.innerText = ` `;
+    playAgain.innerText = 'Reset game!';
+});
+
+rock.addEventListener('click',() => { 
+    const rock = 'rock';
+    return playGame(rock);
+});
+
+paper.addEventListener('click',() => {
+    const paper = 'paper'
+    return playGame(paper);
+});
+
+scissor.addEventListener('click',() => {
+    const scissor = 'scissor';
+    return playGame(scissor);
+});
+
+
+function playGame(playerChoice){
+    playerSelection = playerChoice.toUpperCase();
     computerSelection = getComputerChoice();
-    console.log (playerSelection," ", computerSelection);
     if (playerSelection=== computerSelection)
     {
-        return 1;
+        return game(1);
     }else if(playerSelection === "ROCK" && computerSelection === "PAPER" || 
              playerSelection === "SCISSOR" && computerSelection === "ROCK" || 
              playerSelection === "PAPER" && computerSelection === "SCISSOR")
             {
-            return 2;
+            return game(2);
         }else{
-            return 3;
+            return game(3);
     }
 }
 
-function game(){
-    let computer = 0;
-    let player = 0;
-    let tie = 0;
-    while (computer < 3 || player < 3){
-        let gameResult = playGame();
+
+function game(gameResult){
+    if (computer < 5 || player < 5){
         if(gameResult == 2){
             computer++;
+            computerScore.innerText = `Computer: ${computer}`;
+            if(computer == 5){
+                disableBtns();
+                playAgain.innerText = 'Play again';
+                return winner.innerText = `The winner is the computer! Final score: player: ${player} computer: ${computer}`;
+            }
+            return 0;
         }else if(gameResult == 3){
             player++;
+            playerScore.innerText = `Player: ${player}`;
+            if(player == 5){
+                disableBtns();
+                playAgain.innerText = 'Play again';
+                return winner.innerText = `The winner is the player! Final score: player: ${player} computer: ${computer}`;
+
+            }
+            return 0;
         }else{
             tie ++;
+            tieScore.innerText = `Tie: ${tie}`;
+            return 0;
         }
-    }
-    console.log(player)
-    if(player == 3){
-        return console.log("The player won!");
-    }else{
-        return console.log("The computer won!");
     }
 }
 
-game();
+
+
 
