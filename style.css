@@ -1,0 +1,14 @@
+body{
+    align-items: center;
+    background: linear-gradient(320deg, #eb92be, #ffef80, #64c9b4);
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    background-color: black;
+}
+
+.rock{
+    size: 300px;
+}
