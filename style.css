@@ -1,14 +1,62 @@
+*{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+}
+
+html{
+    box-sizing: border-box;
+    height: 100%;
+}
+
 body{
-    align-items: center;
-    background: linear-gradient(320deg, #eb92be, #ffef80, #64c9b4);
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: linear-gradient(320deg, #eb92be, #ffef80, #64c9b4);
+    margin: 200px 0 0 0;
 }
 
-.container {
-    background-color: black;
+.container{
+    display: flex;
+    justify-content: center;
+    height: 200px;
+    width: 600px;
 }
 
-.rock{
-    size: 300px;
+.results {
+    display: flex;
+    flex-direction: column;
+    width: 14%;
+}
+
+.button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.images{
+    width: 140px;
+    height: 140px;
+    transition: height 700ms,width 700ms;
+}
+
+.images:hover{
+    width: 200px;
+    height: 200px;
+    box-shadow: #64c9b4;
+}
+
+.playAgain{
+    border: none;
+    border-radius: 7px;
+    height: 40px;
+    background-color: rgba(107, 250, 250, 0.623);
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.playAgain:hover{
+    background-color: #64c9b4;
 }
